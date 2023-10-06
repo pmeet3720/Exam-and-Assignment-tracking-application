@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Add meta tags and CSS links -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add specific CSS styles for the student section */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            text-align: center;
+        }
+    
+        nav ul li {
+            display: inline;
+            margin: 10px;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+    
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="welcome-message">Welcome, [Student Name]</h1>
+        <nav>
+            <ul>
+                <li><a href="#subjects">Subjects</a></li>
+                <li><a href="#attendance">Attendance</a></li>
+                <li><a href="#exams">Exams</a></li>
+                <li><a href="#assignments">Assignments</a></li>
+                <li><a href="logout.html" id="logout-button">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="subjects">
+        <!-- Display student's subjects -->
+    </section>
+    <section id="attendance">
+        <!-- Display attendance records and mark attendance -->
+    </section>
+    <section id="exams">
+        <!-- Display exam details and scores -->
+    </section>
+    <section id="assignments">
+        <!-- Display assignment details and submit assignments -->
+    </section>
+    <footer>
+        <p>&copy; 2023 Exam and Assignment Tracking</p>
+    </footer>
+    <script src="student.js"></script>
+    <script>
+        // Check if the student is authenticated
+        const isAuthenticated = localStorage.getItem('authenticated');
+
+        if (!isAuthenticated) {
+            // If not authenticated, redirect to the login page
+            window.location.href = 'student-login.html';
+        }
+
+        // Logout button functionality
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', function () {
+            // Clear authentication state and redirect to the login page
+            localStorage.removeItem('authenticated');
+            window.location.href = 'student-login.html';
+        });
+
+        // Get the student's name from wherever you store it (e.g., localStorage)
+        const studentName = localStorage.getItem('students');
+
+        // Update the welcome message with the student's name
+        if (studentName) {
+            const welcomeMessage = document.getElementById('welcome-message');
+            welcomeMessage.textContent = `Welcome, ${studentName}`;
+        }
+    </script>
+</body>
+
+</html>
